@@ -113,19 +113,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          // AppFlowy Editor Demo
-          buildSeparator(context, 'AppFlowy Editor Demo'),
-          buildListTile(context, 'With Empty Document', () {
-            final jsonString = Future<String>.value(
-              jsonEncode(
-                EditorState.blank(withInitialText: true).document.toJson(),
-              ).toString(),
-            );
-            loadEditor(context, jsonString);
-          }),
-
           // Encoder Demo
-          buildSeparator(context, 'Export To X Demo'),
+          buildSeparator(context, 'Export'),
           buildListTile(context, 'Export To JSON', () {
             exportFile(_editorState, ExportFileType.documentJson);
           }),
@@ -134,7 +123,7 @@ class _HomePageState extends State<HomePage> {
           }),
 
           // Decoder Demo
-          buildSeparator(context, 'Import From X Demo'),
+          buildSeparator(context, 'Import'),
           buildListTile(context, 'Import From Document JSON', () {
             importFile(ExportFileType.documentJson);
           }),
