@@ -11,7 +11,7 @@
   - [ ] set up api key
   - [ ] send request to openAI and parse response
 
-- add context menu to editor to implemeent:
+- add context menu to editor to implement:
   - [ ] translate feature
   - [ ] summarize feature
   - [ ] rephrase feature
