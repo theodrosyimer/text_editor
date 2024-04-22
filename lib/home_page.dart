@@ -51,9 +51,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _jsonString = PlatformExtension.isDesktopOrWeb
-        ? rootBundle.loadString('assets/example.json')
-        : rootBundle.loadString('assets/mobile_example.json');
+    _jsonString = Future<String>.value(
+              jsonEncode(
+                EditorState.blank(withInitialText: true).document.toJson(),
+              ).toString(),
+            );
 
     _widgetBuilder = (context) => Editor(
           jsonString: _jsonString,
