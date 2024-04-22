@@ -2,8 +2,12 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:text_editor/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:dart_openai/dart_openai.dart';
 
-void main() {
+import 'env/env.dart';
+
+void main() async {
+  OpenAI.apiKey = Env.apiKey;
   runApp(const MyApp());
 }
 
