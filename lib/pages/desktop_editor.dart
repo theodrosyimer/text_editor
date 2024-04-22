@@ -87,7 +87,7 @@ class _DesktopEditorState extends State<DesktopEditor> {
           header: Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: Image.asset(
-              'assets/images/header.png',
+              'assets/images/typewriter.jpg',
               fit: BoxFit.fitWidth,
               height: 150,
             ),
