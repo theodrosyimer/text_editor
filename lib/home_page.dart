@@ -61,6 +61,9 @@ class _HomePageState extends State<HomePage> {
             _editorState = editorState;
           },
         );
+    if (PlatformExtension.isDesktopOrWeb) {
+      BrowserContextMenu.disableContextMenu();
+    }
   }
 
   @override
@@ -83,9 +86,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       extendBodyBehindAppBar: PlatformExtension.isDesktopOrWeb,
-      drawer: _buildDrawer(context),
+      drawer: buildDrawer(context),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 134, 46, 247),
+        backgroundColor: const Color.fromARGB(255, 53, 10, 109),
         foregroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
         title: const Text('My Custom Editor'),
@@ -94,7 +97,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget buildDrawer(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -109,42 +112,42 @@ class _HomePageState extends State<HomePage> {
           ),
 
           // AppFlowy Editor Demo
-          _buildSeparator(context, 'AppFlowy Editor Demo'),
-          _buildListTile(context, 'With Empty Document', () {
+          buildSeparator(context, 'AppFlowy Editor Demo'),
+          buildListTile(context, 'With Empty Document', () {
             final jsonString = Future<String>.value(
               jsonEncode(
                 EditorState.blank(withInitialText: true).document.toJson(),
               ).toString(),
             );
-            _loadEditor(context, jsonString);
+            loadEditor(context, jsonString);
           }),
 
           // Encoder Demo
-          _buildSeparator(context, 'Export To X Demo'),
-          _buildListTile(context, 'Export To JSON', () {
-            _exportFile(_editorState, ExportFileType.documentJson);
+          buildSeparator(context, 'Export To X Demo'),
+          buildListTile(context, 'Export To JSON', () {
+            exportFile(_editorState, ExportFileType.documentJson);
           }),
-          _buildListTile(context, 'Export to Markdown', () {
-            _exportFile(_editorState, ExportFileType.markdown);
+          buildListTile(context, 'Export to Markdown', () {
+            exportFile(_editorState, ExportFileType.markdown);
           }),
 
           // Decoder Demo
-          _buildSeparator(context, 'Import From X Demo'),
-          _buildListTile(context, 'Import From Document JSON', () {
-            _importFile(ExportFileType.documentJson);
+          buildSeparator(context, 'Import From X Demo'),
+          buildListTile(context, 'Import From Document JSON', () {
+            importFile(ExportFileType.documentJson);
           }),
-          _buildListTile(context, 'Import From Markdown', () {
-            _importFile(ExportFileType.markdown);
+          buildListTile(context, 'Import From Markdown', () {
+            importFile(ExportFileType.markdown);
           }),
-          _buildListTile(context, 'Import From Quill Delta', () {
-            _importFile(ExportFileType.delta);
+          buildListTile(context, 'Import From Quill Delta', () {
+            importFile(ExportFileType.delta);
           }),
         ],
       ),
     );
   }
 
-  Widget _buildListTile(
+  Widget buildListTile(
     BuildContext context,
     String text,
     VoidCallback? onTap,
@@ -166,7 +169,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildSeparator(BuildContext context, String text) {
+  Widget buildSeparator(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 16, bottom: 4),
       child: Text(
@@ -180,7 +183,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _loadEditor(
+  Future<void> loadEditor(
     BuildContext context,
     Future<String> jsonString, {
     TextDirection textDirection = TextDirection.ltr,
@@ -204,7 +207,7 @@ class _HomePageState extends State<HomePage> {
     return completer.future;
   }
 
-  void _exportFile(
+  void exportFile(
     EditorState editorState,
     ExportFileType fileType,
   ) async {
@@ -263,7 +266,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _importFile(ExportFileType fileType) async {
+  void importFile(ExportFileType fileType) async {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       allowedExtensions: [fileType.extension],
@@ -302,7 +305,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (mounted) {
-      _loadEditor(context, Future<String>.value(jsonString));
+      loadEditor(context, Future<String>.value(jsonString));
     }
   }
 }
