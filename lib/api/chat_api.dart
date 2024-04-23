@@ -4,7 +4,6 @@ import 'package:text_editor/env/env.dart';
 class ChatApi {
   static const _model = 'gpt-3.5-turbo';
 
-
   ChatApi() {
     OpenAI.apiKey = Env.apiKey;
     OpenAI.requestsTimeOut = const Duration(seconds: 60);

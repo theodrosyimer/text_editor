@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:text_editor/api/chat_api.dart';
 
-
 final CommandShortcutEvent translateCommand = CommandShortcutEvent(
   key: 'translate the content',
   getDescription: () => Intl.message(

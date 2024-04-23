@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:appflowy_editor/appflowy_editor.dart';
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/editor/editor_component/service/shortcuts/command/copy_paste_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:text_editor/api/chat_api.dart';
-
 
 final CommandShortcutEvent summarizeCommand = CommandShortcutEvent(
   key: 'summarize the content',

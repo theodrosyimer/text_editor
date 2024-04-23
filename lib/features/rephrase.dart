@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:text_editor/api/chat_api.dart';
 
-
 final CommandShortcutEvent rephraseCommand = CommandShortcutEvent(
   key: 'rephrase the content',
   getDescription: () => Intl.message(
