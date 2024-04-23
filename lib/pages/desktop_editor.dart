@@ -1,6 +1,7 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_editor/features/rephrase.dart';
 import 'package:text_editor/features/summarize.dart';
 
 class DesktopEditor extends StatefulWidget {
@@ -175,6 +176,7 @@ class _DesktopEditorState extends State<DesktopEditor> {
             (el) => el == toggleHighlightCommand,
           ),
         summarizeCommand,
+        rephraseCommand,
       ],
       ...findAndReplaceCommands(
         context: context,
