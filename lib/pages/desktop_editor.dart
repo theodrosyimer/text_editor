@@ -1,6 +1,7 @@
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_editor/features/summarize.dart';
 
 class DesktopEditor extends StatefulWidget {
   const DesktopEditor({
@@ -173,6 +174,7 @@ class _DesktopEditorState extends State<DesktopEditor> {
           ..removeWhere(
             (el) => el == toggleHighlightCommand,
           ),
+        summarizeCommand,
       ],
       ...findAndReplaceCommands(
         context: context,
