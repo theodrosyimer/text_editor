@@ -7,6 +7,7 @@ class ChatApi {
 
   ChatApi() {
     OpenAI.apiKey = Env.apiKey;
+    OpenAI.requestsTimeOut = const Duration(seconds: 60);
   }
 
   Future<OpenAIChatCompletionChoiceMessageModel> assistantChat({required String chatInstruction, required String userInput}) async {
