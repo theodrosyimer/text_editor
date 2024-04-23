@@ -9,9 +9,14 @@
 
 - openAI api (dart lib)
   - [x] set up api key
-  - [ ] send request to openAI and parse response
+  - [x] send request to openAI and parse response
 
 - add context menu to editor to implement:
-  - [ ] translate feature
-  - [ ] summarize feature
-  - [ ] rephrase feature
+  - [x] translate feature
+  - [x] summarize feature
+  - [x] rephrase feature
+
+Notes:
+
+- all features work using shortcuts for now and need to be added to the toolbar
+- the translate feature is hardcoded for now and need to be dynamically updated
