@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:text_editor/features/rephrase.dart';
 import 'package:text_editor/features/summarize.dart';
+import 'package:text_editor/features/translate.dart';
 
 class DesktopEditor extends StatefulWidget {
   const DesktopEditor({
@@ -177,6 +178,7 @@ class _DesktopEditorState extends State<DesktopEditor> {
           ),
         summarizeCommand,
         rephraseCommand,
+        translateCommand,
       ],
       ...findAndReplaceCommands(
         context: context,
