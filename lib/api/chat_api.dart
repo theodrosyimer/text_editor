@@ -9,11 +9,11 @@ class ChatApi {
     OpenAI.apiKey = Env.apiKey;
   }
 
-  Future<OpenAIChatCompletionChoiceMessageModel> assistantChat(String textInput) async {
+  Future<OpenAIChatCompletionChoiceMessageModel> assistantChat({required String chatInstruction, required String userInput}) async {
     final systemMessage = OpenAIChatCompletionChoiceMessageModel(
       content: [
         OpenAIChatCompletionChoiceMessageContentItemModel.text(
-          'You will summarize a given text into the most informative summary.',
+          chatInstruction,
         ),
       ],
       role: OpenAIChatMessageRole.assistant,
@@ -22,7 +22,7 @@ class ChatApi {
     final userMessage = OpenAIChatCompletionChoiceMessageModel(
       content: [
         OpenAIChatCompletionChoiceMessageContentItemModel.text(
-          textInput,
+          userInput,
         ),
         ],
           role: OpenAIChatMessageRole.user,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appflowy_editor/appflowy_editor.dart';
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/editor/editor_component/service/shortcuts/command/copy_paste_extension.dart';
@@ -19,8 +21,6 @@ final CommandShortcutEvent summarizeCommand = CommandShortcutEvent(
   handler: _summarizeCommandHandler,
 );
 
-
-
 CommandShortcutEventHandler _summarizeCommandHandler = (editorState) {
   final selection = editorState.selection;
   if (selection == null) {
@@ -32,27 +32,19 @@ CommandShortcutEventHandler _summarizeCommandHandler = (editorState) {
     final text = data.text;
     final html = data.html;
 
-    // use ChatApi to send text to OpenAI
     final chatApi = ChatApi();
-    final summary = await chatApi.assistantChat(text!);
+    final summary = await chatApi.assistantChat(
+      chatInstruction: 'You will summarize a given text into the most informative summary.',
+      userInput: text!,
+    );
 
     if (summary.content.toString().isEmpty) {
       return;
     }
 
-    // paste the summary
-    // await editorState.deleteSelectionIfNeeded();
-    // editorState.pastePlainText(summary.content.toString());
-
-    // // if the summary is pasted successfully, then return
-    // // otherwise, paste the html
-    // if (await editorState.pasteHtml(summary.content.toString())) {
-    //   return;
-    // }
     if (html != null && html.isNotEmpty) {
       await editorState.deleteSelectionIfNeeded();
-      // if the html is pasted successfully, then return
-      // otherwise, paste the plain text
+
       if (await editorState.pasteHtml(summary.content?[0].text ?? '')) {
         return;
       }
@@ -66,8 +58,6 @@ CommandShortcutEventHandler _summarizeCommandHandler = (editorState) {
 
   return KeyEventResult.handled;
 };
-
-
 
 RegExp _hrefRegex = RegExp(
   r'https?://(?:www\.)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(?:/[^\s]*)?',
